@@ -6,7 +6,11 @@ const links = {
   'Contato': ['contato@agccapital.com.br', 'fabio@agccapital.com.br', '+55 (11) 9 9999-9999', 'São Paulo, SP'],
 };
 
-export default function Footer() {
+interface FooterProps {
+  onClientArea?: () => void;
+}
+
+export default function Footer({ onClientArea }: FooterProps) {
   return (
     <footer className="bg-[#0D2137] text-blue-200">
       <div className="container-xl py-16">
@@ -32,14 +36,18 @@ export default function Footer() {
             </div>
           ))}
         </div>
-        <div className="border-t border-blue-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="border-t border-[#2196F3]/20 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-blue-400 text-xs">
-            © {new Date().getFullYear()} AGC Capital. Todos os direitos reservados.
+            &copy; {new Date().getFullYear()} AGC Capital. Todos os direitos reservados.
           </p>
-          <div className="flex items-center gap-2 text-xs text-blue-400">
-            <span className="pulse-dot" />
-            <span>Open for advisory · São Paulo, BR</span>
-          </div>
+          {onClientArea && (
+            <button
+              onClick={onClientArea}
+              className="text-[#4FC3F7] text-xs hover:text-white transition-colors font-medium"
+            >
+              Área do Cliente →
+            </button>
+          )}
         </div>
       </div>
     </footer>
