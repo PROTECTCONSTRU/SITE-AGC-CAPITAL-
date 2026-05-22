@@ -4,17 +4,17 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 
 interface NavProps {
-    onClientArea: () => void;
+  onClientArea: () => void;
 }
 
 export default function Nav({ onClientArea }: NavProps) {
-    const [scrolled, setScrolled] = useState(false);
-    const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-        const onScroll = () => setScrolled(window.scrollY > 40);
-        window.addEventListener('scroll', onScroll);
-        return () => window.removeEventListener('scroll', onScroll);
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   const links = [
@@ -24,102 +24,61 @@ export default function Nav({ onClientArea }: NavProps) {
     { href: '#consultoria',   label: 'Consultoria' },
     { href: '#protect-constru', label: 'Protect Constru' },
     { href: '#fabio',         label: 'Fábio Santos' },
-      ];
+  ];
 
   return (
-        <header
-                className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-                          scrolled
-                            ? 'py-3 bg-white/95 backdrop-blur-xl border-b border-blue-100 shadow-sm'
-                            : 'py-6 bg-transparent'
-                }`}
-              >
-              <div className="container-xl flex items-center justify-between gap-8">
-              
-                {/* ── Logo ── */}
-                      <a href="#" className="flex items-center gap-2 shrink-0">
-                                <Image
-                                              src="/logo-agc.svg"
-                                              alt="AGC Capital"
-                                              width={160}
-                                              height={50}
-                                              priority
-                                              className="h-10 w-auto"
-                                            />
-                      </a>a>
-              
-                {/* ── Links desktop ── */}
-                      <nav className="hidden lg:flex items-center gap-8">
-                        {links.map(l => (
-                            <a key={l.href} href={l.href} className="nav-link">
-                              {l.label}
-                            </a>a>
-                          ))}
-                      </nav>nav>
-              
-                {/* ── CTAs ── */}
-                      <div className="hidden lg:flex items-center gap-3">
-                                <button
-                                              onClick={onClientArea}
-                                              className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-[#2196F3] border border-[#2196F3] rounded hover:bg-blue-50 transition-colors"
-                                            >
-                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                                          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                                                          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                                            </svg>svg>
-                                            Área do Cliente
-                                </button>button>
-                                <a
-                                              href="https://wa.me/5511999999999?text=Olá%2C%20gostaria%20de%20falar%20com%20um%20Risk%20Advisor"
-                                              target="_blank"
-                                              rel="noopener noreferrer"
-                                              className="btn-primary text-sm px-5 py-2 rounded"
-                                            >
-                                            Risk Advisor →
-                                </a>a>
-                      </div>div>
-              
-                {/* ── Mobile hamburger ── */}
-                      <button
-                                  className="lg:hidden flex flex-col gap-1.5 p-2"
-                                  onClick={() => setMobileOpen(!mobileOpen)}
-                                  aria-label="Menu"
-                                >
-                                <span className={`block h-0.5 w-6 bg-[#0D2137] transition-all ${mobileOpen ? 'rotate-45 translate-y-2' : ''}`}/>
-                                <span className={`block h-0.5 w-6 bg-[#0D2137] transition-all ${mobileOpen ? 'opacity-0' : ''}`}/>
-                                <span className={`block h-0.5 w-6 bg-[#0D2137] transition-all ${mobileOpen ? '-rotate-45 -translate-y-2' : ''}`}/>
-                      </button>button>
-              </div>div>
-        
-          {/* ── Mobile menu ── */}
-          {mobileOpen && (
-                        <div className="lg:hidden bg-white border-t border-blue-100 px-6 py-4 flex flex-col gap-4">
-                          {links.map(l => (
-                                      <a
-                                                      key={l.href}
-                                                      href={l.href}
-                                                      className="text-sm text-[#0D2137] font-medium py-2 border-b border-blue-50"
-                                                      onClick={() => setMobileOpen(false)}
-                                                    >
-                                        {l.label}
-                                      </a>a>
-                                    ))}
-                                  <button
-                                                onClick={() => { onClientArea(); setMobileOpen(false); }}
-                                                className="btn-outline text-sm mt-2 rounded"
-                                              >
-                                              Área do Cliente
-                                  </button>button>
-                                  <a
-                                                href="https://wa.me/5511999999999"
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="btn-primary text-sm rounded text-center"
-                                              >
-                                              Risk Advisor →
-                                  </a>a>
-                        </div>div>
-              )}
-        </header>header>
-      );
-}</header>
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? 'bg-[#0D2137]/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
+      }`}
+    >
+      <div className="container-xl flex items-center justify-between h-16">
+        <a href="#hero" className="flex items-center gap-3">
+          <div className="relative w-10 h-10">
+            <Image src="/logo-agc.svg" alt="AGC Capital" fill className="object-contain" />
+          </div>
+          <span className="text-white font-bold text-lg hidden sm:block">AGC Capital</span>
+        </a>
+        <ul className="hidden lg:flex items-center gap-6">
+          {links.map((l) => (
+            <li key={l.href}>
+              <a href={l.href} className="text-[#4FC3F7]/80 hover:text-white text-sm font-medium transition-colors">
+                {l.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <div className="hidden lg:flex items-center gap-3">
+          <button onClick={onClientArea} className="text-[#4FC3F7] text-sm font-medium hover:text-white transition-colors">
+            Área do Cliente
+          </button>
+          <a href="#contato" className="bg-[#2196F3] hover:bg-[#4FC3F7] text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors">
+            Falar com Especialista
+          </a>
+        </div>
+        <button className="lg:hidden text-white p-2" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Menu">
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            {mobileOpen ? (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            ) : (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            )}
+          </svg>
+        </button>
+      </div>
+      {mobileOpen && (
+        <div className="lg:hidden bg-[#0D2137] border-t border-[#2196F3]/20 px-6 py-4 space-y-3">
+          {links.map((l) => (
+            <a key={l.href} href={l.href} className="block text-[#4FC3F7]/80 hover:text-white text-sm py-1" onClick={() => setMobileOpen(false)}>
+              {l.label}
+            </a>
+          ))}
+          <div className="pt-3 border-t border-[#2196F3]/20 flex flex-col gap-2">
+            <button onClick={onClientArea} className="text-[#4FC3F7] text-sm font-medium text-left">Área do Cliente</button>
+            <a href="#contato" className="bg-[#2196F3] text-white text-sm font-semibold px-4 py-2 rounded-lg text-center">Falar com Especialista</a>
+          </div>
+        </div>
+      )}
+    </nav>
+  );
+}
