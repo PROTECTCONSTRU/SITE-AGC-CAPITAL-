@@ -1,125 +1,100 @@
 'use client';
 
-import Image from 'next/image';
-import Icon from '@/components/ui/Icon';
+import Reveal from '@/components/ui/Reveal';
 
-export default function Hero() {
+interface HeroProps {
+  onClientArea: () => void;
+}
+
+export default function Hero({ onClientArea }: HeroProps) {
   return (
-    <section id="top" className="relative min-h-screen flex items-center overflow-hidden hero-bg vignette">
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=2400&q=85&auto=format&fit=crop"
-          alt="Arquitetura corporativa"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover opacity-25"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-ink/70 via-ink/50 to-ink"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/60 to-transparent"></div>
-      </div>
-
-      <svg className="absolute inset-0 w-full h-full opacity-[0.06] pointer-events-none" preserveAspectRatio="none">
-        <defs>
-          <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
-            <path d="M 80 0 L 0 0 0 80" fill="none" stroke="#D4A437" strokeWidth="0.5" />
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#grid)" />
-      </svg>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 py-32 lg:py-0 w-full">
-        <div className="grid lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-8">
-            <div className="flex items-center gap-3 mb-10">
-              <span className="w-12 h-px bg-gold"></span>
-              <span className="eyebrow">Est. · Risk Advisory & Capital Architecture</span>
-            </div>
-
-            <h1 className="display text-paper text-[2.6rem] sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem] mb-8">
-              <span className="hero-title-line">
-                <span style={{ animationDelay: '0.1s' }}>Proteção, crédito</span>
-              </span>
-              <span className="hero-title-line">
-                <span style={{ animationDelay: '0.25s' }}>
-                  e <em>inteligência</em>
-                </span>
-              </span>
-              <span className="hero-title-line">
-                <span style={{ animationDelay: '0.4s' }}>financeira.</span>
-              </span>
+    <section
+      id="hero"
+      className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-[#0D2137] via-[#1A3A5C] to-[#2196F3]"
+    >
+      <div className="absolute inset-0 opacity-5"
+        style={{
+          backgroundImage: 'linear-gradient(rgba(79,195,247,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(79,195,247,0.3) 1px, transparent 1px)',
+          backgroundSize: '60px 60px'
+        }}
+      />
+      <div className="container-xl relative z-10 grid lg:grid-cols-2 gap-16 items-center pt-32 pb-20">
+        <div className="space-y-8">
+          <Reveal>
+            <p className="eyebrow text-[#4FC3F7]">EST. &middot; RISK ADVISORY &amp; CAPITAL ARCHITECTURE</p>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <h1 className="heading-xl text-white">
+              Prote&ccedil;&atilde;o,{' '}
+              <span className="text-[#4FC3F7]">Cr&eacute;dito</span>
+              {' '}e Intelig&ecirc;ncia{' '}
+              <span className="text-[#4FC3F7]">Financeira</span>
             </h1>
-
-            <p className="text-paper/70 text-lg md:text-xl max-w-2xl leading-relaxed mb-4 font-light">
-              Uma assessoria <span className="text-gold-light">full service</span> especializada em gestão de
-              riscos, seguros, crédito, investimentos, consórcios e planejamento patrimonial — para empresas,
-              famílias e a construção civil.
+          </Reveal>
+          <Reveal delay={0.2}>
+            <p className="body-lg text-blue-200 max-w-xl">
+              Uma assessoria{' '}
+              <strong className="text-white font-semibold">full service</strong>{' '}
+              especializada em gest&atilde;o de riscos, seguros, cr&eacute;dito,
+              investimentos, cons&oacute;rcios e planejamento patrimonial &mdash;
+              para empresas, fam&iacute;lias e a constru&ccedil;&atilde;o civil.
             </p>
-
-            <p className="text-paper/50 text-sm md:text-base max-w-xl leading-relaxed mb-12 italic font-serif">
-              Não somos uma corretora. Somos um ecossistema estratégico de proteção, crédito, patrimônio e
-              gestão de riscos.
+          </Reveal>
+          <Reveal delay={0.25}>
+            <p className="text-blue-300 italic text-sm max-w-lg">
+              N&atilde;o somos uma corretora. Somos um ecossistema estrat&eacute;gico de
+              prote&ccedil;&atilde;o, cr&eacute;dito, patrim&ocirc;nio e gest&atilde;o de riscos.
             </p>
-
-            <div className="flex flex-wrap gap-4">
-              <a href="#solucoes" className="btn-gold">
-                Conheça nossas soluções
-                <Icon name="arrow-right" className="w-4 h-4" />
+          </Reveal>
+          <Reveal delay={0.3}>
+            <div className="flex flex-wrap gap-4 pt-2">
+              <a
+                href="#solucoes"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[#2196F3] text-white font-semibold rounded hover:bg-[#1565C0] transition-colors"
+              >
+                Conhe&ccedil;a nossas solu&ccedil;&otilde;es &rarr;
               </a>
-              <a href="#cta" className="btn-ghost">
+              <a
+                href="https://wa.me/5511999999999?text=Ol%C3%A1%2C%20gostaria%20de%20falar%20com%20um%20Risk%20Advisor"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-transparent text-white font-semibold border border-white/40 rounded hover:bg-white/10 transition-colors"
+              >
                 Falar com um Risk Advisor
               </a>
             </div>
-          </div>
+          </Reveal>
+        </div>
 
-          <div className="lg:col-span-4">
-            <div className="glass-dark p-8 relative">
-              <div className="absolute -top-px left-8 right-8 h-px bg-gradient-to-r from-transparent via-gold to-transparent"></div>
-
-              <div className="eyebrow mb-6 flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse-dot"></span>
-                Ecossistema AGC
+        <Reveal delay={0.2}>
+          <div className="space-y-6">
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-6 space-y-6">
+              <p className="eyebrow text-[#4FC3F7]">&middot; ECOSSISTEMA AGC</p>
+              <div className="border-b border-white/10 pb-5">
+                <div className="stat-number text-white">04</div>
+                <p className="text-white font-semibold mt-1">VERTICAIS INTEGRADAS</p>
+                <p className="text-blue-200 text-sm mt-1">Seguros &middot; Cr&eacute;dito &middot; Investimentos &middot; Sa&uacute;de</p>
               </div>
-
-              <div className="space-y-7">
-                <div>
-                  <div className="display text-gold-gradient text-5xl tabular">04</div>
-                  <div className="text-paper/60 text-xs uppercase tracking-widest mt-2">Verticais Integradas</div>
-                  <div className="text-paper/40 text-xs mt-1">Seguros · Crédito · Investimentos · Saúde</div>
-                </div>
-
-                <div className="gold-rule"></div>
-
-                <div>
-                  <div className="display text-gold-gradient text-5xl tabular">30+</div>
-                  <div className="text-paper/60 text-xs uppercase tracking-widest mt-2">Parceiros Estratégicos</div>
-                  <div className="text-paper/40 text-xs mt-1">Seguradoras, bancos e operadoras de saúde</div>
-                </div>
-
-                <div className="gold-rule"></div>
-
-                <div>
-                  <div className="display text-gold-gradient text-5xl tabular">02</div>
-                  <div className="text-paper/60 text-xs uppercase tracking-widest mt-2">Plataformas Proprietárias</div>
-                  <div className="text-paper/40 text-xs mt-1">Protect Constru · Risco Zero</div>
-                </div>
+              <div className="border-b border-white/10 pb-5">
+                <div className="stat-number text-[#4FC3F7]">30+</div>
+                <p className="text-white font-semibold mt-1">PARCEIROS ESTRAT&Eacute;GICOS</p>
+                <p className="text-blue-200 text-sm mt-1">Seguradoras, bancos e operadoras de sa&uacute;de</p>
+              </div>
+              <div>
+                <div className="stat-number text-white">02</div>
+                <p className="text-white font-semibold mt-1">PLATAFORMAS PROPRIET&Aacute;RIAS</p>
+                <p className="text-blue-200 text-sm mt-1">Protect Constru &middot; Risco Zero</p>
               </div>
             </div>
-
-            <div className="mt-4 flex items-center justify-between text-paper/40 text-xs font-mono">
-              <span>São Paulo · BR</span>
-              <span className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse-dot"></span>
+            <div className="flex items-center justify-between text-blue-300 text-xs font-mono">
+              <span>S&atilde;o Paulo &middot; BR</span>
+              <span className="flex items-center gap-2">
+                <span className="pulse-dot" />
                 Open for advisory
               </span>
             </div>
           </div>
-        </div>
-      </div>
-
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-paper/40">
-        <span className="text-[10px] uppercase tracking-[0.3em] font-mono">Role para explorar</span>
-        <Icon name="arrow-down" className="w-4 h-4 animate-bounce" />
+        </Reveal>
       </div>
     </section>
   );
